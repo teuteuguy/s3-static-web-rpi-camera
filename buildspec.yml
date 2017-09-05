@@ -15,7 +15,7 @@ phases:
       - yarn
   build:
     commands:
-      - yarn run build
+      # - yarn run build
   post_build:
     commands:
       - aws s3 sync --delete --exclude assets/* build/ "s3://${BUCKET_NAME}"

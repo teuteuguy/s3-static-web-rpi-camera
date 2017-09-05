@@ -1,0 +1,1 @@
+# s3-static-web-rpi-camera

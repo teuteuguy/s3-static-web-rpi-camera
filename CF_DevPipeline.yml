@@ -222,28 +222,28 @@ Resources:
       Stages:
         - Name: Source
           Actions:
-            - Name: MasterSourceAction
+            - Name: SourceActionProd
               ActionTypeId:
                 Category: Source
                 Owner: ThirdParty
                 Version: '1'
                 Provider: GitHub
               OutputArtifacts:
-                - Name: StaticSiteSource
+                - Name: StaticSiteSourceProd
               Configuration:
                 Owner: !Ref GitHubOwner
                 Repo: !Ref GitHubRepo
                 Branch: !Ref GitHubProdBranch
                 OAuthToken: !Ref GitHubOAuthToken
               RunOrder: 1
-            - Name: MasterSourceAction
+            - Name: SourceActionStaging
               ActionTypeId:
                 Category: Source
                 Owner: ThirdParty
                 Version: '1'
                 Provider: GitHub
               OutputArtifacts:
-                - Name: StaticSiteSource
+                - Name: StaticSiteSourceStaging
               Configuration:
                 Owner: !Ref GitHubOwner
                 Repo: !Ref GitHubRepo
@@ -252,18 +252,31 @@ Resources:
               RunOrder: 1
         - Name: Build
           Actions:
-            - Name: CodeBuild
+            - Name: CodeBuildProd
               InputArtifacts:
-                - Name: StaticSiteSource
+                - Name: StaticSiteSourceProd
               ActionTypeId:
                 Category: Build
                 Owner: AWS
                 Version: '1'
                 Provider: CodeBuild
               OutputArtifacts:
-                - Name: StaticSite
+                - Name: StaticSiteProd
               Configuration:
-                ProjectName: !Ref CodeBuild
+                ProjectName: !Ref CodeBuildProd
+              RunOrder: 1
+            - Name: CodeBuildStaging
+              InputArtifacts:
+                - Name: StaticSiteSourceStaging
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: '1'
+                Provider: CodeBuild
+              OutputArtifacts:
+                - Name: StaticSiteStaging
+              Configuration:
+                ProjectName: !Ref CodeBuildStaging
               RunOrder: 1
       ArtifactStore:
         Type: S3

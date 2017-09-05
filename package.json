@@ -1,0 +1,18 @@
+{
+  "name": "s3-staticwebsite-pipeline",
+  "version": "1.0.0",
+  "description": "Boilerplate staticwebsite prod and staging pipeline",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://teuteuguy@github.com/teuteuguy/s3-staticwebsite-pipeline.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teuteuguy/s3-staticwebsite-pipeline/issues"
+  },
+  "homepage": "https://github.com/teuteuguy/s3-staticwebsite-pipeline#readme"
+}
